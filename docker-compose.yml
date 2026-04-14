@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  bff:
+    image: ${DOCKER_IMAGE:-dparmijog/biblioteca-bff:latest}
+    container_name: biblioteca-bff
+    ports:
+      - "8080:8080"
+    environment:
+      - SERVER_PORT=8080
+      - DB_URL=jdbc:oracle:thin:@gibi3xseta997y7i_tp?TNS_ADMIN=/app/wallet
+      - DB_USER=${DB_USER:-ADMIN}
+      - DB_PASSWORD=${DB_PASSWORD:-aWxpYqvej@bUin3P!tbP}
+      # FaaS REST
+      - FN_USUARIOS_URL=${FN_USUARIOS_URL:-https://exp2-usuarios-d7gdduepc3etf6ga.brazilsouth-01.azurewebsites.net}
+      - FN_RESERVAS_URL=${FN_RESERVAS_URL:-https://exp2-reservas-bhfxdyeqchhkh7bc.brazilsouth-01.azurewebsites.net}
+      # FaaS GraphQL
+      - FN_LIBROS_URL=${FN_LIBROS_URL:-https://exp2-libros-babgfdhjg8dec6c4.brazilsouth-01.azurewebsites.net}
+      - FN_PRESTAMOS_URL=${FN_PRESTAMOS_URL:-https://exp2-prestamos-hnenhffdc4ecgnea.brazilsouth-01.azurewebsites.net}
+    restart: unless-stopped

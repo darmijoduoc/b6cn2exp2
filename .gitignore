@@ -1,0 +1,8 @@
+target/
+*.class
+*.jar
+.env
+.claude/
+.vscode/
+.claude/
+biblioteca-bff/wallet/
